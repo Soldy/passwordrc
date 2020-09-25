@@ -1,0 +1,28 @@
+{
+  "name": "passwordrc",
+  "version": "0.9.9-alpha1",
+  "description": "Password Strength Tester",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soldy/passwordTest.git"
+  },
+  "keywords": [
+    "password",
+    "strenght",
+    "check",
+    "test"
+  ],
+  "author": "Soldy <4786022+Soldy@users.noreply.github.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Soldy/passwordTest/issues"
+  },
+  "homepage": "https://github.com/Soldy/passwordTest#readme",
+  "devDependencies": {
+    "nanoTest": "^0.9.9-beta4"
+  }
+}
