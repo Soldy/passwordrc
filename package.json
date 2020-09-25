@@ -1,5 +1,5 @@
 {
-  "name": "passwordrc",
+  "name": "passwdrc",
   "version": "0.9.9-alpha1",
   "description": "Password Strength Tester",
   "main": "index.js",
@@ -8,20 +8,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Soldy/passwordTest.git"
+    "url": "git+https://github.com/Soldy/passwordrc.git"
   },
   "keywords": [
     "password",
     "strenght",
     "check",
+    "owasp",
     "test"
   ],
   "author": "Soldy <4786022+Soldy@users.noreply.github.com>",
-  "license": "GPL-3.0",
+  "license": "GPL-3.0-or-later",
   "bugs": {
-    "url": "https://github.com/Soldy/passwordTest/issues"
+    "url": "https://github.com/Soldy/passwordrc/issues"
   },
-  "homepage": "https://github.com/Soldy/passwordTest#readme",
+  "homepage": "https://github.com/Soldy/passwordrc#readme",
   "devDependencies": {
     "nanoTest": "^0.9.9-beta4"
   }
