@@ -1,10 +1,18 @@
-"use strict";
+/*
+ *  @Soldy\passwordrc\2021.01.27\GPL3
+ */
+'use strict';
+
+/*
+ * @param {integer} limitIn //maximum size of package
+ * @prototype
+ */
 
 const passwordBase=function(){
     /*
-     * @param string {pass}
+     * @param {string} pass
      * @public
-     * @return object
+     * @return {object}
      */
     this.check=function(password){
         reset();
@@ -34,11 +42,11 @@ const passwordBase=function(){
         return log.result;
     };
     /*
-     * @param string {type}
-     * @param string {name}
-     * @param string/number {value}
+     * @param {string} type
+     * @param {string}  name
+     * @param {string||number} value
      * @public
-     * @return boolean
+     * @return {boolean}
      */
     this.set=function(type, name, value){
         if(typeof setup[type] === "undefined")
@@ -60,14 +68,14 @@ const passwordBase=function(){
     };
     /*
      * @public
-     * @returm object
+     * @returm {object}
      */
     this.getLog = function(){
         return log;
     };
     /*
-     * @private 
-     * @var object 
+     * @private
+     * @var {object}
      */
     let setup={
         check:{
@@ -94,17 +102,17 @@ const passwordBase=function(){
     };
     /*
      * @private
-     * @var object
+     * @var {object}
      */
     let log={};
     /*
      * @private
-     * @var string
+     * @var {string}
      */
     let password="";
     /*
      * @private
-     * @var object
+     * @var {object}
      */
     let reset=function(){
         log={
@@ -143,11 +151,10 @@ const passwordBase=function(){
         };
     };
     /*
-     * @param string {target}
-     * @param string {limit}
-     * @param string/number {value}
+     * @param {string} target
+     * @param {string} limit
      * @private
-     * @return boolean
+     * @return {boolean}
      */
     let failed = function(target, limit){
         if(typeof limit === "undefined"){
@@ -165,9 +172,9 @@ const passwordBase=function(){
         return true;
     };
     /*
-     *  @param string {target}
+     *  @param {string} target
      *  @private
-     *  @return boolean
+     *  @return {boolean}
      */
     let setupMissCheck = function(target){
         if(
@@ -182,10 +189,10 @@ const passwordBase=function(){
         return false;
     }
     /*
-     *  @param string {target}
-     *  @param string {limit}
+     *  @param {string} targe
+     *  @param {string} limit
      *  @private
-     *  @return boolean
+     *  @return {boolean}
      */
     let setupLimitMissCheck = function(target, limit){
         if(
@@ -198,10 +205,10 @@ const passwordBase=function(){
         return false;
     }
     /*
-     * @param string  {checkStr}
-     * @param string  {target}
+     * @param {string}  checkStr
+     * @param {string}  target
      * @private
-     * @return boolean
+     * @return {boolean}
      */
     let checkCase =function(checkStr, target){
         if (setupMissCheck(target))
@@ -220,9 +227,9 @@ const passwordBase=function(){
         return true;
     };
     /*
-     * @param string {checkStr}
+     * @param {string} checkStr
      * @private
-     * @retun integer
+     * @retun {integer}
      */
     let checkDuplication = function(checkStr){
         return (checkStr.length - [...new Set(checkStr)].length);
