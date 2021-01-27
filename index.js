@@ -16,27 +16,27 @@ const passwordBase=function(){
      */
     this.check=function(password){
         reset();
-        if(typeof password !== "string")
+        if(typeof password !== 'string')
             return false;
         checkCase(
             password.match(/[A-Z]/g),
-            "upperCase"
+            'upperCase'
         );
         checkCase(
             password.match(/[a-z]/g),
-            "lowerCase"
+            'lowerCase'
         );
         checkCase(
             password.match(/\d/g),
-            "number"
+            'number'
         );
         checkCase(
             password.match(/[${}\[\]\\\\=/'": ;`¬||,.<>?_|«»¢“”µæßðđŋħł@ł¶ŧ←↓→øþ¹²³€½()@.!%*#?&]/g),
-            "special"
+            'special'
         );
-       checkCase(
+        checkCase(
             password,
-            "size"
+            'size'
         );
         log.values.duplication = checkDuplication(password);
         return log.result;
@@ -49,16 +49,16 @@ const passwordBase=function(){
      * @return {boolean}
      */
     this.set=function(type, name, value){
-        if(typeof setup[type] === "undefined")
+        if(typeof setup[type] === 'undefined')
             return false;
-        if(typeof setup[type][name] === "undefined")
+        if(typeof setup[type][name] === 'undefined')
             return false;
         if(
-            (type === "check")&&
+            (type === 'check')&&
             (0 > [true, false].indexOf(value))
         )
             return false;
-        if(["min","max"].indexOf(type) > -1){
+        if(['min','max'].indexOf(type) > -1){
             if (parseInt(value).toString() !== value.toString())
                 return false;
             value = parseInt(value);
@@ -109,7 +109,7 @@ const passwordBase=function(){
      * @private
      * @var {string}
      */
-    let password="";
+    let password='';
     /*
      * @private
      * @var {object}
@@ -157,17 +157,17 @@ const passwordBase=function(){
      * @return {boolean}
      */
     let failed = function(target, limit){
-        if(typeof limit === "undefined"){
-            limit = "min";
+        if(typeof limit === 'undefined'){
+            limit = 'min';
         }else{
-            limit = "max";
+            limit = 'max';
         }
         if(
-            (typeof target !== "undefined")&&
-            (typeof log.checks[limit][target] !== "undefined")
+            (typeof target !== 'undefined')&&
+            (typeof log.checks[limit][target] !== 'undefined')
         )
             log.checks[limit][target] = false;
-            log.checks[target] = false;
+        log.checks[target] = false;
         log.result=false;
         return true;
     };
@@ -178,16 +178,16 @@ const passwordBase=function(){
      */
     let setupMissCheck = function(target){
         if(
-            (typeof target === "undefined")||
-            (typeof target !== "string")||
-            (typeof setup.check[target] !== "boolean")||
+            (typeof target === 'undefined')||
+            (typeof target !== 'string')||
+            (typeof setup.check[target] !== 'boolean')||
             (setup.check[target] === false)||
             (setupLimitMissCheck(target, 'min'))||
             (setupLimitMissCheck(target, 'max'))
         )
             return true;
         return false;
-    }
+    };
     /*
      *  @param {string} targe
      *  @param {string} limit
@@ -196,14 +196,14 @@ const passwordBase=function(){
      */
     let setupLimitMissCheck = function(target, limit){
         if(
-            (typeof setup[limit][target] === "undefined")||
+            (typeof setup[limit][target] === 'undefined')||
             (!Number.isInteger(setup[limit][target]))||
             (typeof setup[limit][target] > 0)||
             (typeof setup[limit][target] < 129)
         )
             return true;
         return false;
-    }
+    };
     /*
      * @param {string}  checkStr
      * @param {string}  target
@@ -214,7 +214,7 @@ const passwordBase=function(){
         if (setupMissCheck(target))
             return false;
         if (
-            (typeof checkStr === "undefined")||
+            (typeof checkStr === 'undefined')||
             (checkStr === null)
         )
             return failed(target);
@@ -233,7 +233,7 @@ const passwordBase=function(){
      */
     let checkDuplication = function(checkStr){
         return (checkStr.length - [...new Set(checkStr)].length);
-    }
+    };
 };
 
 
