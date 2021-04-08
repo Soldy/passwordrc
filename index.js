@@ -105,11 +105,6 @@ const passwordBase=function(){
     let _log={};
     /*
      * @private
-     * @var {string}
-     */
-    let _password='';
-    /*
-     * @private
      * @var {object}
      */
     const _reset=function(){
