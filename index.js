@@ -15,31 +15,31 @@ const passwordBase=function(){
      * @return {object}
      */
     this.check=function(password){
-        reset();
+        _reset();
         if(typeof password !== 'string')
             return false;
-        checkCase(
+        _checkCase(
             password.match(/[A-Z]/g),
             'upperCase'
         );
-        checkCase(
+        _checkCase(
             password.match(/[a-z]/g),
             'lowerCase'
         );
-        checkCase(
+        _checkCase(
             password.match(/\d/g),
             'number'
         );
-        checkCase(
+        _checkCase(
             password.match(/[${}\[\]\\\\=/'": ;`¬||,.<>?_|«»¢“”µæßðđŋħł@ł¶ŧ←↓→øþ¹²³€½()@.!%*#?&]/g),
             'special'
         );
-        checkCase(
+        _checkCase(
             password,
             'size'
         );
-        log.values.duplication = checkDuplication(password);
-        return log.result;
+        _log.values.duplication = _checkDuplication(password);
+        return _log.result;
     };
     /*
      * @param {string} type
@@ -49,9 +49,9 @@ const passwordBase=function(){
      * @return {boolean}
      */
     this.set=function(type, name, value){
-        if(typeof setup[type] === 'undefined')
+        if(typeof _setup[type] === 'undefined')
             return false;
-        if(typeof setup[type][name] === 'undefined')
+        if(typeof _setup[type][name] === 'undefined')
             return false;
         if(
             (type === 'check')&&
@@ -63,7 +63,7 @@ const passwordBase=function(){
                 return false;
             value = parseInt(value);
         }
-        setup[type][name]=value;
+        _setup[type][name]=value;
         return true;
     };
     /*
@@ -71,13 +71,13 @@ const passwordBase=function(){
      * @returm {object}
      */
     this.getLog = function(){
-        return log;
+        return _log;
     };
     /*
      * @private
      * @var {object}
      */
-    let setup={
+    let _setup={
         check:{
             upperCase:true,
             lowerCase:true,
@@ -104,18 +104,18 @@ const passwordBase=function(){
      * @private
      * @var {object}
      */
-    let log={};
+    let _log={};
     /*
      * @private
      * @var {string}
      */
-    let password='';
+    let _password='';
     /*
      * @private
      * @var {object}
      */
-    let reset=function(){
-        log={
+    const _reset=function(){
+        _log={
             checks:{
                 min:{
                     upperCase:true,
@@ -156,7 +156,7 @@ const passwordBase=function(){
      * @private
      * @return {boolean}
      */
-    let failed = function(target, limit){
+    const _failed = function(target, limit){
         if(typeof limit === 'undefined'){
             limit = 'min';
         }else{
@@ -164,11 +164,11 @@ const passwordBase=function(){
         }
         if(
             (typeof target !== 'undefined')&&
-            (typeof log.checks[limit][target] !== 'undefined')
+            (typeof _log.checks[limit][target] !== 'undefined')
         )
-            log.checks[limit][target] = false;
-        log.checks[target] = false;
-        log.result=false;
+            _log.checks[limit][target] = false;
+        _log.checks[target] = false;
+        _log.result=false;
         return true;
     };
     /*
@@ -176,14 +176,14 @@ const passwordBase=function(){
      *  @private
      *  @return {boolean}
      */
-    let setupMissCheck = function(target){
+    const _setupMissCheck = function(target){
         if(
             (typeof target === 'undefined')||
             (typeof target !== 'string')||
-            (typeof setup.check[target] !== 'boolean')||
-            (setup.check[target] === false)||
-            (setupLimitMissCheck(target, 'min'))||
-            (setupLimitMissCheck(target, 'max'))
+            (typeof _setup.check[target] !== 'boolean')||
+            (_setup.check[target] === false)||
+            (_setupLimitMissCheck(target, 'min'))||
+            (_setupLimitMissCheck(target, 'max'))
         )
             return true;
         return false;
@@ -194,12 +194,12 @@ const passwordBase=function(){
      *  @private
      *  @return {boolean}
      */
-    let setupLimitMissCheck = function(target, limit){
+    const _setupLimitMissCheck = function(target, limit){
         if(
-            (typeof setup[limit][target] === 'undefined')||
-            (!Number.isInteger(setup[limit][target]))||
-            (typeof setup[limit][target] > 0)||
-            (typeof setup[limit][target] < 129)
+            (typeof _setup[limit][target] === 'undefined')||
+            (!Number.isInteger(_setup[limit][target]))||
+            (typeof _setup[limit][target] > 0)||
+            (typeof _setup[limit][target] < 129)
         )
             return true;
         return false;
@@ -210,20 +210,20 @@ const passwordBase=function(){
      * @private
      * @return {boolean}
      */
-    let checkCase =function(checkStr, target){
-        if (setupMissCheck(target))
+    const _checkCase =function(checkStr, target){
+        if (_setupMissCheck(target))
             return false;
         if (
             (typeof checkStr === 'undefined')||
             (checkStr === null)
         )
-            return failed(target);
+            return _failed(target);
         let size = checkStr.length;
-        log.values[target] = size;
-        if(setup['min'][target] > size)
-            return failed(target);
-        if(size > setup['max'][target])
-            return failed(target, 1);
+        _log.values[target] = size;
+        if(_setup['min'][target] > size)
+            return _failed(target);
+        if(size > _setup['max'][target])
+            return _failed(target, 1);
         return true;
     };
     /*
@@ -231,7 +231,7 @@ const passwordBase=function(){
      * @private
      * @retun {integer}
      */
-    let checkDuplication = function(checkStr){
+    const _checkDuplication = function(checkStr){
         return (checkStr.length - [...new Set(checkStr)].length);
     };
 };
