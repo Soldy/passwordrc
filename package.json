@@ -1,6 +1,6 @@
 {
   "name": "passwdrc",
-  "version": "0.9.9-alpha1",
+  "version": "0.9.9-alpha2",
   "description": "Password Strength Tester",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/Soldy/passwordrc#readme",
   "devDependencies": {
-    "nanoTest": "^0.9.9-beta4"
+    "nanoTest": "^0.9.9-beta17c"
   }
 }
