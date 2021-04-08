@@ -4,10 +4,8 @@
 'use strict';
 
 /*
- * @param {integer} limitIn //maximum size of package
  * @prototype
  */
-
 const passwordBase=function(){
     /*
      * @param {string} pass
@@ -237,4 +235,4 @@ const passwordBase=function(){
 };
 
 
-exports.passwordBase = passwordBase;
+exports.base = passwordBase;

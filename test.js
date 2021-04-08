@@ -1,9 +1,11 @@
 #!/usr/bin/node
-"use strict"
+'use strict'
 
 
-const nanoTest = new (require('nanoTest')).test();
-const passwordCheck = new (require('./index.js')).passwordBase();
+const nanoTest  = new (require('nanoTest')).test({
+    'debugPrint' : 'short'
+});
+const passwordCheck = new (require('./index.js')).base();
          nanoTest.add(
              'not string password',
              {
