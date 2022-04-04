@@ -3,7 +3,8 @@
 
 
 const nanoTest  = new (require('nanoTest')).test({
-    'debugPrint' : 'short'
+    'progress_bar' : false,
+    'debug_print'  : 'long'
 });
 const passwordCheck = new (require('./index.js')).base();
          nanoTest.add(
