@@ -24,6 +24,6 @@
   },
   "homepage": "https://github.com/Soldy/passwordrc#readme",
   "devDependencies": {
-    "nanoTest": "^0.9.9-beta17c"
+    "nanoTest": "^0.9.9-beta28"
   }
 }
